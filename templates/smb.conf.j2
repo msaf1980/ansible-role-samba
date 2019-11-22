@@ -78,6 +78,13 @@
   nt pipe support = no
 {% endif %}
 
+{% if samba_msdfs_root is defined %}
+   host msdfs = yes
+[dfs]
+  path = {{ samba_msdfs_root }}
+  msdfs root = yes
+{% endif %}
+
 {% if samba_global_include is defined %}
   include = {{ samba_configuration_dir }}/{{ samba_global_include }}
 {% endif %}

@@ -89,6 +89,24 @@
   when: samba_create_varwww_symlinks|bool
   tags: samba
 
+- name: Ensure msdfs root exists
+  file:
+    name: "{{ samba_msdfs_root }}"
+    state: directory
+    owner: root
+    mode: 0755
+  when: samba_msdfs_root is defined
+  tags: samba
+
+- name: Create link to shares in msdfs root
+  file:
+    state: link
+    path: "{{ samba_msdfs_root }}/{{ item.name }}"
+    src: "{{ item.path }}"
+  with_items: "{{ samba_msdfs_shares }}"
+  when: samba_msdfs_root is defined and samba_msdfs_shares is defined
+  tags: samba
+
 - name: Samba configuration
   template:
     dest: "{{ samba_configuration }}"

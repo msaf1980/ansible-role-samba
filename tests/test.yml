@@ -52,7 +52,11 @@
     samba_username_map:
       - from: 'User Two'
         to: usr2
-        
+
+    samba_msdfs_root: /srv/dfsroot
+    samba_msdfs_shares:
+      - name: publicshare
+        path: "msdfs:{{ samba_netbios_name }}/publicshare"
     samba_shares_root: /srv/samba
     samba_shares:
       - name: restrictedshare
