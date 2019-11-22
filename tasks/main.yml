@@ -103,6 +103,7 @@
     state: link
     path: "{{ samba_msdfs_root }}/{{ item.name }}"
     src: "{{ item.path }}"
+    force: yes
   with_items: "{{ samba_msdfs_shares }}"
   when: samba_msdfs_root is defined and samba_msdfs_shares is defined
   tags: samba
