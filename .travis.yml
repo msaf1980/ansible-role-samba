@@ -10,9 +10,12 @@ env:
       VERSION: 18.04
     - DISTRIBUTION: debian
       VERSION: 9
+    - DISTRIBUTION: debian
+      VERSION: 10
     - DISTRIBUTION: fedora
       VERSION: 29
-
+    - DISTRIBUTION: fedora
+      VERSION: 30
 services:
   - docker
 
@@ -28,11 +31,5 @@ before_install:
   - git worktree add docker-tests origin/docker-tests
 
 script:
-  # Create container and apply test playbook
-  - ./docker-tests/docker-tests.sh
-
-  # Run functional tests on the container
-  - SUT_IP=172.17.0.2 ./docker-tests/functional-tests.sh
-
-notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  # Create container, apply test playbook and run tests
+  - ./tests/docker-tests.sh
