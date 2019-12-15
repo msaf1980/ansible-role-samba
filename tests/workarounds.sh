@@ -4,7 +4,7 @@
 # Workarounds for some bugs
 if [ -f /etc/redhat-release ]; then
     major_version=$( rpm -E %{rhel} )
-
+    yum install -y samba-client
 
     [ "${major_version}" == "7" -o "${major_version}" == "6" ] && {
        # Bug in docker hosts OS overlayfs
@@ -23,6 +23,8 @@ if [ -f /etc/redhat-release ]; then
        #[ -f /var/lib/ebtables/lock ] && rm  -f /var/lib/ebtables/lock
        # Not work, disable config SELinux/Firewalld
     #}
+else if [ -f /etc/debian_version ]; then
+    apt-get install -y samba-common-bin
 fi
 
 exit 0
