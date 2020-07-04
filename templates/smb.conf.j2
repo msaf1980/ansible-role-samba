@@ -78,6 +78,16 @@
   nt pipe support = no
 {% endif %}
 
+{% if samba_socket_options is defined %}
+  socket options = {{ samba_socket_options }}
+{% endif %}
+{% if samba_write_cache_size is defined %}
+  write cache size = {{ samba_write_cache_size }}
+{% endif %}
+{% if samba_sendfile_use %}
+  use sendfile = yes
+{% endif %}
+
 {% if samba_msdfs_root is defined %}
    host msdfs = yes
 [dfs]
