@@ -65,6 +65,9 @@ No specific requirements
 | `samba_users`                  | []                       | List of dicts defining users that can access shares.                                                                         |
 | `samba_wins_support`           | true                     | When true, Samba will act as a WINS server                                                                                   |
 | `samba_workgroup`              | `WORKGROUP`              | Name of the server workgroup.                                                                                                |
+| `samba_socket_options`         |                          | Socket options (for perfomance set `IPTOS_LOWDELAY TCP_NODELAY SO_KEEPALIVE`                                                 |
+| `samba_write_cache_size`       |                          | Write cache size in bytes                                                                                                    |
+| `samba_sendfile_use`           | false                    | Use sendfile                                                                                                                 |
 
 ### Defining users
 
